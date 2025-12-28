@@ -1,7 +1,7 @@
 #include "plugins/BadApplePlugin.h"
 #include <vector>
 
-std::vector<std::vector<int>> frames = {
+std::vector<std::vector<u_int8_t>> frames = {
   #include "badApple.h"  
 };
 
@@ -34,7 +34,11 @@ void BadApplePlugin::loop()
 
   if (size > 0)
   {
-    std::vector<int> bits = Screen.readBytes(frames[this->frame]);
+    std::vector<int> frame;
+    for (u_int8_t pixel : frames[this->frame]) {
+      frame.push_back((int) pixel);
+    }
+    std::vector<int> bits = Screen.readBytes(frame);
 
     for (int i = 0; i < bits.size(); i++)
     {
