@@ -48,7 +48,7 @@ void BadApplePlugin::loop()
       this->frame = 0;
     }
 
-    auto const frameDelay = 16;
+    auto const frameDelay = 32;
 #ifdef ESP32
     vTaskDelay(pdMS_TO_TICKS(frameDelay));
 #else

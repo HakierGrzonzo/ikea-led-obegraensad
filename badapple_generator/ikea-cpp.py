@@ -21,7 +21,7 @@ for file in sorted(glob.glob(sys.argv[1])):
 
 
 def pack_pixels_to_ints(frame: list[int]):
-    for row in batched(frame, 16):
+    for row in batched(frame, 8):
         bits = [pixel > 128 for pixel in row]
         bit_string = "".join("1" if bit else "0" for bit in bits)
         yield int(bit_string, base=2)
