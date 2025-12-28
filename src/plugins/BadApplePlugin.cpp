@@ -1,8 +1,8 @@
 #include "plugins/BadApplePlugin.h"
 #include <vector>
 
-std::vector<std::vector<int>> frames = {std::vector<int>{}
-  
+std::vector<std::vector<int>> frames = {
+  #include "badApple.h"  
 };
 
 void BadApplePlugin::setup()
