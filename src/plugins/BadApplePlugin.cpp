@@ -1,14 +1,14 @@
 #include "plugins/BadApplePlugin.h"
 #include <vector>
 
-std::vector<std::vector<int>> frames = [
+std::vector<std::vector<int>> frames = {std::vector<int>{}
   
-];
+};
 
 void BadApplePlugin::setup()
 {
   this->frame = 0;
-  if (customBadAppleFrames.size() == 0)
+  if (frames.size() == 0)
   {
     Screen.setPixel(7, 4, 1);
     Screen.setPixel(8, 4, 1);
@@ -34,7 +34,7 @@ void BadApplePlugin::loop()
 
   if (size > 0)
   {
-    std::vector<int> bits = Screen.readBytes(frames[this->step]);
+    std::vector<int> bits = Screen.readBytes(frames[this->frame]);
 
     for (int i = 0; i < bits.size(); i++)
     {
