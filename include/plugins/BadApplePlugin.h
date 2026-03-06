@@ -5,7 +5,7 @@
 class BadApplePlugin : public Plugin
 {
 private:
-  uint8_t frame = 0;
+  uint32_t frame = 0;
   int frameDelay = 400;
 
 public:

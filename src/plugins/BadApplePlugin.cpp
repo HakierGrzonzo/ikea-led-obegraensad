@@ -1,14 +1,15 @@
 #include "plugins/BadApplePlugin.h"
 #include <vector>
 
-std::vector<std::vector<u_int8_t>> frames = {
-  #include "badApple.h"  
+#define FRAME_SIZE 32
+static const uint8_t frames[][FRAME_SIZE] = {
+  #include "badApple.h"
 };
 
 void BadApplePlugin::setup()
 {
   this->frame = 0;
-  if (frames.size() == 0)
+  if (std::size(frames) == 0)
   {
     Screen.setPixel(7, 4, 1);
     Screen.setPixel(8, 4, 1);
@@ -52,7 +53,7 @@ void BadApplePlugin::loop()
       this->frame = 0;
     }
 
-    auto const frameDelay = 64;
+    auto const frameDelay = 33; // 30 FPS
 #ifdef ESP32
     vTaskDelay(pdMS_TO_TICKS(frameDelay));
 #else
