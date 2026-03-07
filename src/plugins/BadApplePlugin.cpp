@@ -1,7 +1,7 @@
 #include "plugins/BadApplePlugin.h"
 #include <vector>
 
-#define FRAME_SIZE 32
+#define FRAME_SIZE 256
 static const uint8_t frames[][FRAME_SIZE] = {
   #include "badApple.h"
 };
@@ -35,15 +35,19 @@ void BadApplePlugin::loop()
 
   if (size > 0)
   {
-    std::vector<int> frame;
-    for (u_int8_t pixel : frames[this->frame]) {
-      frame.push_back((int) pixel);
-    }
-    std::vector<int> bits = Screen.readBytes(frame);
+    // std::vector<int> frame;
+    // for (u_int8_t pixel : frames[this->frame]) {
+    //   frame.push_back((int) pixel);
+    // }
+    //std::vector<int> bits = Screen.readBytes(frame);
 
-    for (int i = 0; i < bits.size(); i++)
+    // for (int i = 0; i < bits.size(); i++)
+    // {
+    //   Screen.setPixelAtIndex(i, bits[i]);
+    // }
+    for (int i = 0; i < std::size(frames[this->frame]); i++)
     {
-      Screen.setPixelAtIndex(i, bits[i]);
+      Screen.setPixelAtIndex(i, 1, frames[this->frame][i]);
     }
 
     this->frame++;
